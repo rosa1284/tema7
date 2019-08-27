@@ -53,15 +53,21 @@
         red.innerHTML = "<img src=http://mabe-kea.dk/E19/pics/pig.png>";
         */
 
+        document.addEventListener("DOMContentLoaded", start)
 
 
 
-        const pigUrl = "http://mabe-kea.dk/E19/pics/pig.png";
-        const frogUrl = "http://mabe-kea.dk/E19/pics/frog.png";
+        function start() {
+            console.log("Så er dommens content loaded");
 
 
-        document.querySelector(".green").innerHTML = `<img src =${frogUrl} alt="grøn frø" >`;
-        document.querySelector(".red").innerHTML = `<img src =${pigUrl} alt="grøn frø" >`;
+            const pigUrl = "http://mabe-kea.dk/E19/pics/pig.png";
+            const frogUrl = "http://mabe-kea.dk/E19/pics/frog.png";
+
+
+            document.querySelector(".green").innerHTML = `<img src =${frogUrl} alt="grøn frø" >`;
+            document.querySelector(".red").innerHTML = `<img src =${pigUrl} alt="grøn frø" >`;
+        }
     </script>
 
 
