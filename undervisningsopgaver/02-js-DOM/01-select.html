@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+
+    <style>
+
+
+    </style>
+
+
+
+</head>
+
+<body>
+
+    <div id=content>
+        <div><a href="https://kea.dk">Link til kea</a></div>
+        <div><a href="github.com/rosa1284">link til github</a></div>
+        <div><img src="http://mabe-kea.dk/E19/pics/frog.png" alt="frø"></div>
+    </div>
+
+
+    <script>
+        const content = document.querySelector("#content");
+        const første = document.querySelector("#content div");
+        const anden = document.querySelector("#content div + div");
+        const sidste = document.querySelector("#content div + div + div");
+        const førstelink = document.querySelector("#content div a");
+        const andetlink = document.querySelector("#content div + div a");
+        const billede = document.querySelector("img");
+
+
+
+
+        førstelink.textContent = "link til Keas hjemmeside";
+
+        andetlink.innerHTML = "<h1>link til github siden<h1>";
+
+        /* Hvis man skriver += tilføjer den h1 tagget og beholder det nuværende
+        andetlink.innerHTML += "<h1>link til github siden<h1>";
+*/
+
+
+
+        /*
+        Man kan skrive det på flere måder. så det kommer ud i consoleloggen. Man kan skrive det som her under. Eller lave variabler på det.
+                console.log(document.querySelector("#content"));
+                console.log(document.querySelector("#content div"));
+                console.log(document.querySelector("#content div + div"));
+                console.log(document.querySelector("#content div + div + div"));
+                console.log(document.querySelector("#content div a"));
+                console.log(document.querySelector("#content div + div a"));
+                console.log(document.querySelector("img"));
+        */
+
+
+
+        console.log(content);
+        console.log(første);
+        console.log(sidste);
+        console.log(førstelink);
+        console.log(andetlink);
+        console.log(billede);
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>
