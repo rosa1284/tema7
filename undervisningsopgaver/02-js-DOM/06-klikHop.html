@@ -42,12 +42,39 @@
 
 
     <script>
-        const pigUrl = "http://mabe-kea.dk/E19/pics/pig.png";
-        const frogUrl = "http://mabe-kea.dk/E19/pics/frog.png";
+        let frogUrl = "http://mabe-kea.dk/E19/pics/frog.png";
+        let pigUrl = "http://mabe-kea.dk/E19/pics/pig.png";
+
+        document.addEventListener("DOMContentLoaded", start)
+
+        function start() {
+
+            console.log("Så er Dommens content loaded");
+
+            let green = document.querySelector(".green");
+            let red = document.querySelector(".red");
 
 
-        document.querySelector(".green").innerHTML = `<img src =${frogUrl} alt="grøn frø" >`;
-        document.querySelector(".red").innerHTML = `<img src =${pigUrl} alt="grøn frø" >`;
+            green.innerHTML = `<img src =${frogUrl} alt="grøn frø" >`;
+            red.innerHTML = `<img src =${pigUrl} alt="gris" >`;
+
+            green.addEventListener("click", flyt);
+            red.addEventListener("click", stop);
+
+            function flyt() {
+
+                let greenstart = green.innerHTML;
+
+                green.innerHTML = red.innerHTML;
+                red.innerHTML = greenstart;
+            }
+
+            function stop() {
+                green.removeEventListener("click", flyt);
+
+            }
+
+        }
     </script>
 
 
