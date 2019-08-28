@@ -25,6 +25,7 @@
             border-radius: 50%;
             background-color: red;
         }
+
     </style>
 
 
@@ -67,16 +68,27 @@
 
                 green.innerHTML = red.innerHTML;
                 red.innerHTML = greenstart;
+
+
             }
 
             function stop() {
                 green.removeEventListener("click", flyt);
+                green.style.transition = "1,5s";
+                green.style.backgroundColor = "red";
+                red.style.transition = "1,5s";
+                red.style.transform = "scale(0)";
+
+                /*Den er ikke færdig. DEn ligner videoens men den virker ikke. what to do???*/
 
             }
 
         }
+
     </script>
-    //funktionerne skal helst ikke ligge inde i andre funktioner. men det var det der var lavet i videoen. så skal variablerne bare placeres anderledens
+    <!--funktionerne skal helst ikke ligge inde i andre funktioner. men det var det der var lavet i videoen. så skal variablerne bare placeres anderledens-->
 
 
-</body></html>
+</body>
+
+</html>
