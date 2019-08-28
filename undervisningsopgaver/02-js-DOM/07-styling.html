@@ -25,6 +25,19 @@
             text-align: center;
             border-radius: 50%;
             background-color: red;
+
+        }
+
+
+
+        .blue {
+            height: 100px;
+            width: 100px;
+            line-height: 100px;
+            text-align: center;
+            background-color: skyblue;
+            border: 2 px dotted black;
+
         }
     </style>
 
@@ -71,11 +84,15 @@
             }
 
             function stop() {
+
+
                 green.removeEventListener("click", flyt);
                 green.style.transition = "1.5s";
-                green.style.backgroundColor = "red";
+                green.style.backgroundColor = "magenta";
                 red.style.transform = "scale(0)";
                 green.style.opacity = "0.5";
+                green.style.height = "2rem";
+                info.classList.remove = ("green");
 
 
 
