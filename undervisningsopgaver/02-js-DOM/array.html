@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>js-oevelse-1</title>
+    <style>
+        body {
+            color: burlywood;
+        }
+
+        #display {
+            width: 20vw;
+            height: 20vw;
+            border: 1px solid silver;
+            margin: 7vw;
+            padding: 1vw;
+        }
+
+        /*********************/
+    </style>
+
+</head>
+
+<body>
+    <div id="display"></div>
+
+    <script>
+        /*LAver først en array (liste) som er en variable*/
+
+        let playListe = ["sound of music", "Dansing in the rain", "What a wonderful world", "Langt ude i skoven", "yesterday", "Boots", "Krøller eller aj", "Ved landsbyensgadekær", "smilende Sussi", "Så længe jeg lever"];
+
+        /*tager variablen og vælger for hvert track, at den skal vælge #display diven og sætte noget HTML ind, så hvert track er neden under hinanden*/
+
+        playListe.forEach(track => {
+            document.querySelector("#display").innerHTML += ` ${track} <br>`;
+
+        })
+    </script>
+</body></html>
