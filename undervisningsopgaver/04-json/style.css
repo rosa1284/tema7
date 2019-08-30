@@ -1,0 +1,34 @@
+body {
+    margin: 2px;
+}
+
+#liste {
+    display: grid;
+    grid-template-columns: 1fr;
+
+}
+
+article {
+    border: 2px solid black;
+    margin: 2px;
+    padding: 10px;
+    align-items: center;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+
+@media (min-width:700px) {
+    #liste {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width:1200px) {
+    #liste {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}

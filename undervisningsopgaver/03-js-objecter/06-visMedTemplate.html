@@ -6,12 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="">
+
+    <style>
+        body {
+            margin: 2px;
+        }
+
+        article {
+            border: 2px solid black;
+            margin: 2px;
+            padding: 10px;
+        }
+
+    </style>
+
+
+
 </head>
 
 <body>
+    <template>
+        <article>
+            <h2></h2>
+            <img />
+            <p class="typen"></p>
+            <p class="levested"></p>
+        </article>
+    </template>
 
-    <article></article>
 
+
+    <div id=liste></div>
 
 
 
@@ -52,14 +77,27 @@
                 }]
 
 
+            const liste = document.querySelector("#liste");
+            const dyrTemplate = document.querySelector("template");
+
             dyr.forEach(dyret => {
-                document.querySelector("article").innerHTML += `<p>${dyret.navn}, ${dyret.type}, ${dyret.levested}</p>`;
+
+                let klon = dyrTemplate.cloneNode(true).content;
+
+                klon.querySelector("h2").textContent = dyret.navn;
+                klon.querySelector("img").src = dyret.billede;
+                klon.querySelector(".typen").textContent = dyret.type;
+                klon.querySelector(".levested").textContent = dyret.levested;
+
+                liste.appendChild(klon);
 
             })
 
-
         }
+
     </script>
 
 
-</body></html>
+</body>
+
+</html>
