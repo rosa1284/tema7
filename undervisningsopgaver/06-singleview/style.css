@@ -6,6 +6,42 @@ nav {
     text-align: center;
 }
 
+h1 {
+    text-align: center;
+}
+
+
+
+/*ALT MED POPUP VINDUET ER FJERNET*/
+/*
+#detalje {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(20, 20, 20, 0.3);
+    cursor: pointer;
+    font-size: 2rem;
+    display: none;
+}
+
+
+#detalje .person {
+    width: 60vw;
+    min-height: 50vh;
+    background: #fff;
+    margin: 4rem auto;
+    padding: 4px;
+}
+
+.luk {
+    position: fixed;
+    right: 0;
+    font-size: 2rem;
+}
+*/
+
 button {
     background-color: lightcoral;
     border: 2px solid pink;
@@ -40,6 +76,7 @@ article {
     align-items: center;
     background-color: dimgrey;
     text-align: center;
+    cursor: pointer;
 }
 
 img {

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personliste kea MMD</title>
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+
+    <h1>Alle</h1>
+
+
+    <nav>
+        <button class="filter valgt" data-køn="alle" data-hold="alle">Alle</button>
+        <button class="filter" data-køn="m" data-hold="alle">Mænd</button>
+        <button class="filter" data-køn="k" data-hold="alle">Kvinder</button>
+        <button class="filter" data-køn="andet" data-hold="alle">Andre</button> <br>
+        <button class="filter" data-køn="k" data-hold="a">Kvinder A</button>
+        <button class="filter" data-køn="k" data-hold="b">Kvinder B</button>
+        <button class="filter" data-køn="m" data-hold="a">Mænd A</button>
+        <button class="filter" data-køn="m" data-hold="b">Mænd B</button>
+
+
+    </nav>
+
+    <template>
+        <article>
+            <h2></h2>
+            <img />
+            <a href="" class="github"></a>
+        </article>
+    </template>
+
+
+
+    <div id=liste></div>
+
+    <div id=detalje>
+        <article class="person">
+            <button class="luk">X</button>
+            <h2></h2>
+            <img src="" alt="">
+            <p>Github:<a class="githubLink" href=""></a></p>
+        </article>
+    </div>
+
+
+
+
+    <script>
+        const liste = document.querySelector("#liste");
+        const temp = document.querySelector("template");
+        let filter = "alle";
+        let filterHold = "alle";
+
+
+        document.addEventListener("DOMContentLoaded", getJson);
+
+
+        async function getJson() {
+            const jsonData = await fetch("https://spreadsheets.google.com/feeds/list/1Xge7slZ9dEOTCn1Yxl3OE4xgvrXOL8Y_iu3WN1yGB1U/od6/public/values?alt=json");
+            console.log("jsonData", jsonData);
+
+
+            personListe = await jsonData.json();
+            start();
+            addEventlistenersToButtons();
+
+        }
+
+        function start() {
+            console.log("dom er loaded");
+
+
+            liste.innerHTML = "";
+
+            personListe.feed.entry.forEach((person) => {
+
+                if ((filter == "alle" || filter == person.gsx$køn.$t) && (filterHold == "alle" || filterHold == person.gsx$hold.$t)) {
+
+                    const klon = temp.cloneNode(true).content;
+
+                    klon.querySelector("h2").textContent = person.gsx$navn.$t;
+                    klon.querySelector("img").src = person.gsx$billede.$t;
+                    klon.querySelector("a").textContent = person.gsx$github.$t;
+                    klon.querySelector("a").href = `https://github.com/${person.gsx$github.$t}`;
+
+
+                    liste.appendChild(klon);
+                    liste.lastElementChild.addEventListener("click", () => {
+                        visDetalje(person)
+                    });
+                }
+            })
+
+        }
+
+        function visDetalje(person) {
+            document.querySelector("#detalje").style.display = "block";
+
+            document.querySelector("#detalje .luk").addEventListener("click", skjulDetalje);
+
+
+            document.querySelector("#detalje h2").textContent = person.gsx$navn.$t;
+            document.querySelector("#detalje img").src = person.gsx$billede.$t;
+            document.querySelector("#detalje img").alt = person.gsx$navn.$t;
+            document.querySelector("#detalje .githubLink").href = `https://github.com/${person.gsx$github.$t}`;
+            document.querySelector("#detalje .githubLink").textContent = `https://github.com/${person.gsx$github.$t}`;
+
+
+        }
+
+        function skjulDetalje() {
+            document.querySelector("#detalje").style.display = "none";
+        }
+
+
+        function addEventlistenersToButtons() {
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.addEventListener("click", filtrering);
+            })
+        }
+
+        function filtrering() {
+            filter = this.dataset.køn;
+            filterHold = this.dataset.hold;
+
+
+            document.querySelector("h1").textContent = this.textContent;
+
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.classList.remove("valgt");
+            })
+
+            this.classList.add("valgt");
+
+            console.log(filter);
+            start();
+        }
+    </script>
+
+
+</body></html>

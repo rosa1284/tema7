@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="da">
+
+
+<!--her er skelettet bare sat op. Har slettet html og css der har med #liste at gøre og lavet en #detalje og sat stylingen ind i html dokumentet. Der er som sådan ikke noget der virker for det kommer først i den næste opg.7-->
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personliste kea MMD</title>
+    <link rel="stylesheet" href="">
+
+
+    <style>
+        body {
+            margin: 2px;
+        }
+
+        nav {
+            text-align: center;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .person {
+            padding: 1em;
+            border: 1px solid black;
+        }
+
+        #detalje .luk {
+            position: fixed;
+            top: 0;
+            left: 0;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        #detalje .person {
+            width: 60vw;
+            min-height: 50vh;
+            margin: auto;
+            padding: 4px;
+            background: #fff;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <section id=detalje>
+        <article class="person">
+            <button class="luk" href="05-kald.html">X</button>
+            <h2></h2>
+            <img src="" alt="">
+            <p>Github:<a class="githubLink" href=""></a></p>
+        </article>
+    </section>
+
+
+
+
+    <script>
+        const liste = document.querySelector("#liste");
+        const temp = document.querySelector("template");
+        let filter = "alle";
+        let filterHold = "alle";
+
+
+        document.addEventListener("DOMContentLoaded", getJson);
+
+
+        async function getJson() {
+            const jsonData = await fetch("https://spreadsheets.google.com/feeds/list/1Xge7slZ9dEOTCn1Yxl3OE4xgvrXOL8Y_iu3WN1yGB1U/od6/public/values?alt=json");
+            console.log("jsonData", jsonData);
+
+
+            personListe = await jsonData.json();
+            start();
+            addEventlistenersToButtons();
+
+        }
+
+        function start() {
+            console.log("dom er loaded");
+
+
+            liste.innerHTML = "";
+
+            personListe.feed.entry.forEach((person) => {
+
+                if ((filter == "alle" || filter == person.gsx$køn.$t) && (filterHold == "alle" || filterHold == person.gsx$hold.$t)) {
+
+                    const klon = temp.cloneNode(true).content;
+
+                    klon.querySelector("h2").textContent = person.gsx$navn.$t;
+                    klon.querySelector("img").src = person.gsx$billede.$t;
+                    klon.querySelector("a").textContent = person.gsx$github.$t;
+                    klon.querySelector("a").href = `https://github.com/${person.gsx$github.$t}`;
+
+
+                    liste.appendChild(klon);
+                    liste.lastElementChild.addEventListener("click", () => {
+                        visDetalje(person)
+                    });
+                }
+            })
+
+        }
+
+        function visDetalje(person) {
+            document.querySelector("#detalje").style.display = "block";
+
+            document.querySelector("#detalje h2").textContent = person.gsx$navn.$t;
+            document.querySelector("#detalje img").src = person.gsx$billede.$t;
+            document.querySelector("#detalje img").alt = person.gsx$navn.$t;
+            document.querySelector("#detalje .githubLink").href = `https://github.com/${person.gsx$github.$t}`;
+            document.querySelector("#detalje .githubLink").textContent = `https://github.com/${person.gsx$github.$t}`;
+
+
+        }
+
+
+        function addEventlistenersToButtons() {
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.addEventListener("click", filtrering);
+            })
+        }
+
+        function filtrering() {
+            filter = this.dataset.køn;
+            filterHold = this.dataset.hold;
+
+
+            document.querySelector("h1").textContent = this.textContent;
+
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.classList.remove("valgt");
+            })
+
+            this.classList.add("valgt");
+
+            console.log(filter);
+            start();
+        }
+    </script>
+
+
+</body></html>

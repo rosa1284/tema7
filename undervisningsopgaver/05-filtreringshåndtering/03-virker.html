@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personliste kea MMD</title>
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+    <nav>
+        <button class="filter valgt" data-køn="alle">Alle</button>
+        <button class="filter" data-køn="m">Mænd</button>
+        <button class="filter" data-køn="k">Kvinder</button>
+        <button class="filter" data-køn="andet">Andre</button>
+
+    </nav>
+
+    <template>
+        <article>
+            <h2></h2>
+            <img />
+            <a href="" class="github"></a>
+
+
+        </article>
+    </template>
+
+
+
+    <div id=liste></div>
+
+
+
+    <script>
+        const liste = document.querySelector("#liste");
+        const temp = document.querySelector("template");
+        let filter = "k";
+
+
+        document.addEventListener("DOMContentLoaded", getJson);
+
+
+        async function getJson() {
+            const jsonData = await fetch("https://spreadsheets.google.com/feeds/list/1Xge7slZ9dEOTCn1Yxl3OE4xgvrXOL8Y_iu3WN1yGB1U/od6/public/values?alt=json");
+            console.log("jsonData", jsonData);
+
+
+            personListe = await jsonData.json();
+            start();
+            addEventlistenersToButtons();
+
+        }
+
+        function start() {
+            console.log("dom er loaded");
+
+
+            liste.innerHTML = "";
+
+            personListe.feed.entry.forEach((person) => {
+
+                if (filter == "alle" || filter == person.gsx$køn.$t) {
+
+
+                    const klon = temp.cloneNode(true).content;
+
+                    klon.querySelector("h2").textContent = person.gsx$navn.$t;
+                    klon.querySelector("img").src = person.gsx$billede.$t;
+                    klon.querySelector("a").textContent = person.gsx$github.$t;
+                    klon.querySelector("a").href = `https://github.com/${person.gsx$github.$t}`;
+
+
+                    liste.appendChild(klon);
+                }
+            })
+
+        }
+
+        function addEventlistenersToButtons() {
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.addEventListener("click", filtrering);
+            })
+        }
+
+        function filtrering() {
+            filter = this.dataset.køn;
+            console.log(filter);
+            start();
+        }
+    </script>
+
+
+</body></html>

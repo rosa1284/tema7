@@ -6,6 +6,10 @@ nav {
     text-align: center;
 }
 
+h1 {
+    text-align: center;
+}
+
 button {
     background-color: lightcoral;
     border: 2px solid pink;
