@@ -1,0 +1,178 @@
+* {
+    box-sizing: border-box;
+}
+
+
+
+body {
+    margin: 0;
+    font-family: verdana;
+}
+
+.header_more {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+header {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: 2px solid black;
+    background-color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: coral;
+}
+
+button.selected {
+    background-color: orangered;
+    color: white;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 0 auto;
+    grid-gap: 20px;
+    max-width: 900px;
+}
+
+
+
+.img_container {
+    max-width: 25vw;
+    max-height: 16.5625vw;
+    border-radius: 30px;
+    overflow: hidden;
+    margin: auto;
+}
+
+img {
+    width: 100%;
+
+}
+
+#view {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 900px;
+    margin: auto;
+
+}
+
+#view img {
+
+    width: 100%;
+    height: 100%
+}
+
+article {
+
+    margin: 5px;
+    padding: 10px;
+    align-items: center;
+    background-color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+
+button.close {
+    padding: 10px 15px;
+    margin: 0px 40px 0 0;
+    border: 2px solid black;
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    right: 4px;
+    font-size: 11px;
+}
+
+button.close:hover {
+    background-color: coral;
+}
+
+
+.pop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(20, 20, 20, 0.3);
+    cursor: pointer;
+    font-size: 11px;
+    display: none;
+}
+
+
+.pop .dish {
+    width: 60vw;
+    min-height: 50vh;
+    background: #fff;
+    margin: 200px auto;
+    padding: 40px;
+    position: relative;
+
+}
+
+.dish_txt {
+    text-align: center;
+}
+
+
+
+
+
+@media (min-width:700px) {
+    .list {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #view {
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+
+    h1 {
+        font-size: 60px;
+    }
+
+}
+
+@media (min-width:1200px) {
+    .list {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+
+
+    h1 {
+        font-size: 70px;
+    }
+
+
+}
