@@ -43,11 +43,12 @@ button {
 }
 
 button:hover {
-    background-color: coral;
+    background-color: deeppink;
+    color: white;
 }
 
 button.selected {
-    background-color: orangered;
+    background-color: black;
     color: white;
 }
 
@@ -67,7 +68,19 @@ button.selected {
     border-radius: 30px;
     overflow: hidden;
     margin: auto;
+
+
 }
+
+.img_container_more {
+    max-width: 25vw;
+    max-height: 16.5625vw;
+    border-radius: 30px;
+    overflow: hidden;
+    margin: auto;
+    filter: saturate(1.2);
+}
+
 
 img {
     width: 100%;
@@ -98,7 +111,9 @@ article {
     cursor: pointer;
 }
 
-
+article:hover {
+    filter: saturate(1.5) drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
+}
 
 .close {
 

@@ -56,7 +56,7 @@ function showPop(dish) {
     document.querySelector(".pop .close").addEventListener("click", hidePop);
 
 
-    document.querySelector(".pop img").src = `imgs/small/${dish.gsx$billede.$t}-sm.jpg`;
+    document.querySelector(".pop img").src = `imgs/large/${dish.gsx$billede.$t}.jpg`;
     document.querySelector(".pop h2").textContent = dish.gsx$navn.$t;
     document.querySelector(".pop .short").textContent = dish.gsx$kort.$t;
     document.querySelector(".pop .price").textContent = `Pris: ${dish.gsx$pris.$t} kr`;

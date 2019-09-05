@@ -43,11 +43,12 @@ button {
 }
 
 button:hover {
-    background-color: coral;
+    background-color: deeppink;
+    color: white;
 }
 
 button.selected {
-    background-color: orangered;
+    background-color: black;
     color: white;
 }
 
@@ -62,15 +63,22 @@ button.selected {
 
 
 .img_container {
+
     max-width: 25vw;
     max-height: 16.5625vw;
     border-radius: 30px;
     overflow: hidden;
     margin: auto;
+
+
+
+
 }
 
 img {
+
     width: 100%;
+
 
 }
 
@@ -98,6 +106,10 @@ article {
     cursor: pointer;
 }
 
+article:hover {
+    filter: saturate(1.5) drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.4));
+}
+
 button.close {
     padding: 10px 15px;
     margin: 0px 40px 0 0;
@@ -111,7 +123,8 @@ button.close {
 }
 
 button.close:hover {
-    background-color: coral;
+    background-color: deeppink;
+    color: white;
 }
 
 
@@ -123,7 +136,7 @@ button.close:hover {
     height: 100vh;
     background: rgb(20, 20, 20, 0.3);
     cursor: pointer;
-    font-size: 11px;
+    font-size: 16px;
     display: none;
 }
 
@@ -135,7 +148,7 @@ button.close:hover {
     margin: 200px auto;
     padding: 40px;
     position: relative;
-
+    filter: saturate(1.2);
 }
 
 .dish_txt {
